@@ -3,12 +3,12 @@ package assignment2;
 import java.util.Scanner;
 public class Diving
 {
-	Scanner keyboard = new Scanner(System.in);
+	static Scanner keyboard = new Scanner(System.in);
     public static void main(String[] args)
     {
         
         double [] set = inputAllScores();
-        set = inputAllScores();
+        //set = inputAllScores();
         //System.out.println("Enter " + calcScore.length + " calcScore.");
         //calcScore[0] = keyboard.nextDouble();
         //double maximum = calcScore[0];
@@ -42,7 +42,7 @@ public class Diving
 	public static double [] inputAllScores(){
 		double[] set = new double[7];
 		
-		for(int i=1; i<=7; i++){
+		for(int i=0; i<7; i++){
 			set[i]=inputValidScore(i);
 		   }
 		
@@ -54,30 +54,33 @@ public class Diving
 		
 		do{
 			System.out.println("Enter the degree of difficulty.");
-			//DegreeOfDifficulty = keyboard.nextDouble();
+			DegreeOfDifficulty = keyboard.nextDouble();
 			if ((DegreeOfDifficulty <= 3.8) && (DegreeOfDifficulty >= 1.2))
 					check = 0;
 			else System.out.println("Enter in a range from 1.2 to 3.8.");
-		  }	while (check > -1);
+		  }	while (check <= -1);
 		
 		return DegreeOfDifficulty;
 	}
 	public static double calculateScore(double DegreeOfDifficulty, double[]set){
-		double total, scoreMin = 0, scoreMax = 10;
+		double total, scoreMin = set[0], scoreMax = set[0];
 		double temptotal = 0;
-		for(int i=1; i <= 7; i++)
+		for(int i=0; i < 7; i++)
 		{
-			if (set[i] > scoreMin);
+			if (set[i] < scoreMin);
 				scoreMin = set[i];
-			if (set[i] < scoreMax)
+			if (set[i] >scoreMax)
 				scoreMax = set[i];
 		}
+		System.out.println(scoreMin);
+		System.out.println(scoreMax);
+		System.out.println(DegreeOfDifficulty);
 		
-		for(int i=1; i <= 7; i++)
+		for(int i=0; i < 7; i++)
 		{
 			temptotal += set[i];
 		}
-		
+		System.out.println(temptotal);
 		total = (temptotal - scoreMin - scoreMax) * .60 * DegreeOfDifficulty;
 		return total;
 	 } 
